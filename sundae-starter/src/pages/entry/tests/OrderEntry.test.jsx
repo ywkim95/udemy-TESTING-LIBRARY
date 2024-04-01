@@ -1,7 +1,7 @@
 import { http, HttpResponse } from "msw";
 import { server } from "../../../mocks/server.js";
 
-import { render, screen } from "@testing-library/react";
+import { render, screen } from "../../../test-utils/testing-library-utils";
 import OrderEntry from "../OrderEntry.jsx";
 test.only("handles error for scoops and toppings routes", async () => {
   server.resetHandlers(
@@ -10,7 +10,7 @@ test.only("handles error for scoops and toppings routes", async () => {
     }),
     http.get("http://localhost:3030/toppings", () => {
       return new HttpResponse(null, { status: 500 });
-    }),
+    })
   );
 
   render(<OrderEntry />);
